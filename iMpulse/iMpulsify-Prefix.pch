@@ -1,0 +1,44 @@
+//
+// Prefix header for all source files of the 'iMpulse' target in the 'iMpulse' project
+//
+
+#import <Availability.h>
+
+#ifndef __IPHONE_3_0
+#warning "This project uses features only available in iOS SDK 3.0 and later."
+#endif
+
+#ifdef __OBJC__
+    #import <UIKit/UIKit.h>
+    #import <Foundation/Foundation.h>
+#endif
+
+
+////////////
+//DebugLog
+////////////
+
+//Turns DebugLog on and off
+#define DEBUG_LOG_ON
+
+#ifdef DEBUG_LOG_ON
+
+//Define the DebugLog macro
+#define DebugLog( s, ... ) NSLog( @"%s(%d)  %@",__PRETTY_FUNCTION__, __LINE__, [NSString stringWithFormat:(s), ##__VA_ARGS__] )
+
+//Define DebugLogWhereAmI which just NSLogs __PRETTY_FUNCTION__ and __LINE__
+#define DebugLogWhereAmI() DebugLog(@"")
+
+#else
+//Define both macros as emptystring so they don't do anything
+#define DebugLog( s, ... )
+#define DebugLogWhereAmI()
+
+#endif
+
+/////////////
+//Debug Modes
+/////////////
+
+//Doesn't try to hide the Text Field
+#define DEBUG_MODE_VISIBLE_TEXT_ENTRY 0
